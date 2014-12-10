@@ -988,7 +988,7 @@ progress[data-theme=b]::-moz-progress-value {
 }
 #homelist i { margin:0 0 0 0}
 .htext {background-color:#555;padding:5px 30px; height:55px;   }
-    .htext div { font-size:20px; color:white; font-weight:normal; height:55px; }
+    .htext div { font-size:20px; color:white; font-weight:normal;   }
 .newsitem { background-color:white; border:1px solid #ccc;border-radius:3px;  padding:4px; height:64px;}
 .newsitemta { background-color:white; border:1px solid #ccc;border-radius:3px;  padding:4px; height:80px;}
 .newstopitem{ background-color:white; border:1px solid #ccc;border-radius:3px;  padding:4px 6px;height:100%;}
