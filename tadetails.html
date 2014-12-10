@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TTN Online</title>
+     <script src="js/jquery-2.1.1.min.js"></script>
+		<!-- jQueryMobileCSS - styling-->
+ 
+		<!-- jQueryMobile icons -->
+		<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+		<!-- jQueryMobile core CSS -->
+		<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+		<!-- NIGHTLY style -->
+		<link rel="stylesheet" href="css/nightly.css" />
+		<!-- Load Google Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic|Oswald:400,700' rel='stylesheet' type='text/css'>
+		<!-- Load Font Awesome Icons -->
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<!-- jQueryMobile -->
+		<script src="js/jquery.mobile.min.js"></script>
+
+        <style>
+            .item {
+            margin:0px;padding:0px;
+            }
+
+        </style>
+    <link href="css/royalslider2.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.royalslider.min.js"></script>
+    
+        <!-- NIGHTLY style -->
+    <link rel="stylesheet" href="css/nightly.css" />
+    <!-- Load Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic|Oswald:400,700' rel='stylesheet' type='text/css'>
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <style>
+        ul { margin:0px; padding:0px;    }
+        .contentSlider {
+            width: 100%;
+        }
+
+            .contentSlider,
+            .contentSlider .rsOverflow,
+            .contentSlider .rsSlide,
+            .contentSlider .rsVideoFrameHolder,
+            .contentSlider .rsThumbs {
+                background: #eee;
+                color: #000;
+            }
+
+                .contentSlider .rsSlide,
+                .contentSlider .rsOverflow {
+                    background: #fff;
+                }
+
+                .contentSlider h3 {
+                    font-size: 24px;
+                    line-height: 31px;
+                    margin: 12px 0 8px;
+                    font-weight: bold;
+                }
+
+                .contentSlider img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                }
+
+        .content-slider-bg {
+            
+             
+        }
+
+        a {text-decoration:none;}
+    </style>
+
+</head>
+<body>
+  <div data-role="page"  >
+
+         <div data-role="panel" data-display="push" id="sidebar" data-theme="a"  >
+
+        <img src="images/ttnlogo.png" />
+        <br />
+        <br />
+
+        <ul id="menu" data-role="listview" data-inset="false" data-icon="false" data-divider-theme="" class="ui-listview" style="text-align: left;  ">
+            <li><a href="index.html" data-ajax="false" class="ui-btn"><i class="fa fa-home fa-fw" style="width: 20px; text-align: right"></i>Home</a></li>
+        </ul>
+    </div>
+
+ 
+
+        <div data-role="header"  style="background-color:#127ec2">
+            <a href='#sidebar' data-role="none">
+                <img src="images/menu-icon.png" alt="sidebar" id="header-menu-icon" /></a>
+            <h1 class="header-title">
+                <img src="images/ttnlogo.png"  onclick="window.location.href='index.html'" />
+            </h1>
+
+        </div>
+
+
+        <div data-role="content" style="background-color:white">
+
+        <div class="row clearfix">
+
+
+            <div class="content-slider-bg">
+                <ul id="content-slider-1" class="royalSlider contentSlider rsDefault">
+                </ul>
+            </div>
+
+
+        </div>
+            
+                
+<div id="morestr" style="background-color:white;"></div>
+                   <iframe class="left" scrolling="no"   src="http://cdn.ttnonline.com/app/ads.html" frameborder="0" height="65px" width="100%"></iframe>
+        <br class="clear" /><div class="right" style="width:40px;height:40px;"><a href="#" class="back-to-top"><img src="images/backtotop.png" /></a></div>
+                <div data-role="listview" style="background-color: #444; color: #999; font-size: 10px; padding: 5px 20px;">&copy; Al Hilal Group. &nbsp; &nbsp; &nbsp;Powered by Northstar Technologies.</div>
+    </div>
+
+</div>
+
+    <script>
+
+        jQuery(document).ready(function ($) {
+
+            var pageno = 1;
+            var cupageno = 0;
+            var pagecontent = "";
+            var newslides = "";
+            var goto = 0;
+
+            var morestories = "<br class='clear'><div style='color:white; background-color:#127ec2;padding:5px 10px;text-transform:uppercase;font-size:14px;font-weight:bold'>More Stories</div><br>"
+
+
+
+            $.getJSON('http://cdn.ttnonline.com/TATopArticlesTTNFull?jsoncallback=?', function (data) {
+
+                morestories += "<div style='padding:0 15px'><table style='font-size:16px'>";
+
+                $.each(data, function (key, value) {
+                    pageno++;
+                    cupageno++;
+                    if (cupageno <= 25) {
+                        pagecontent += "<li>";
+                        pagecontent += "<div data-role='listview'>";
+                        pagecontent += "<div id='sectiontitle' style='background-color: #555; color: white;padding:10px 0px 10px 15px;'>" + data[key].dateline;
+                        pagecontent += "<div class='right' style='font-size: 12px;margin:0px 15px 0 0'><a style='color: #fff' class='secmore'> " + cupageno + " of " + data.length + "</div></div></div>";
+                        pagecontent += "<div class='right' style='font-size: 12px;margin:5px 5px 0 0'><a style='color: #666' class='secmore'><i class='fa fa-angle-right fa-fw'></i></a></div>";
+                        pagecontent += "<div id='curpage' class='right' style='font-size: 12px; margin: 6px 0px 0px 0px;color:#666'>swipe for more</div>";
+                        pagecontent += "<div class='right' style='font-size: 12px;margin-top:5px'><a style='color: #666' id='prevstory' class='secmore'><i style='margin: 0px' class='fa fa-angle-left fa-fw'></i></a></div>";
+                        pagecontent += "<div style='height: 5px;' class='clear'></div>";
+                        pagecontent += "<div style='padding: 4px 5px;'>";
+                        pagecontent += "<div data-role='listview' class='newstopitem' >";
+                        pagecontent += "<h2 id='leadtitle' style='font-size: 18px; text-transform: uppercase; max-width: 100%; margin: 10px 0px 0px 0px; padding: 0px;'>" + data[key].Title + "</h2>";
+                        pagecontent += "<div id='posted' class='left' style='font-size: 12px; text-align: left; color: #666; margin: 5px 0px 10px 0px; padding: 0px;'>Posted on: " + data[key].datepublished + " </div>";
+                        pagecontent += "<br style='clear:both'><img style='width:100%;' src='" + data[key].ImageFileNameSRC + "'>";
+                        pagecontent += "<div style='font-size: 12px; text-align: center; color: #666'>" + data[key].caption + "</div>";
+                        pagecontent += "<div style='line-height: 15px; font-size: 16px;overflow:hidden'>" + data[key].aText + "</div>";
+                        pagecontent += "</div>";
+                        pagecontent += "</div>";
+                        pagecontent += "</li>";
+
+
+                        morestories += "<tr><td style='padding:5px 0px;vertical-align:top'><i class='fa fa-angle-right fa-fw'></i></td>";
+                        morestories += "<td style='padding:5px 0px;vertical-align:top'><span style='cursor:pointer'  onclick=pagefinder('" + cupageno + "')>" + data[key].Title + "</span></td></tr>";
+
+                        if (data[key].ArticleID == querystring('id')) {
+                            goto = cupageno;
+
+                        }
+
+                    }
+                   
+
+                });
+ morestories += "</table></div>";
+
+                $("#morestr").append(morestories);
+
+                jQuery('#content-slider-1').royalSlider({
+                    slides: pagecontent,
+                    autoHeight: true,
+                    arrowsNav: false,
+                    fadeinLoadedSlide: true,
+                    controlNavigationSpacing: 0,
+                    controlNavigation: 'bullets',
+                    imageScaleMode: 'none',
+                    imageAlignCenter: false,
+                    navigateByClick: false,
+                    loop: true,
+                    loopRewind: true,
+                    numImagesToPreload: 30,
+                    keyboardNavEnabled: true
+                });
+
+                $('#content-slider-1').royalSlider('goTo', goto - 1);
+
+            });
+        });
+
+
+        $(window).load(function () {
+            $('#content-slider-1').royalSlider('updateSliderSize', true);
+        });
+
+        function pagefinder(pageno) {
+            $('#content-slider-1').royalSlider('goTo', pageno - 1);
+            jQuery('html, body').animate({ scrollTop: 0 }, 5);
+        }
+
+
+        $.getJSON('http://cdn.ttnonline.com/ttnSections/?jsoncallback=?', function (data) {
+
+            $.each(data, function (key, value) {
+                $('#menu').append("<li><a onclick=javascript:window.location.href='section.html?id=" + data[key].sectionissueid + "' data-ajax='false' class='ui-btn'><i class='fa fa-align-center' style='width: 20px; text-align: right'></i>" + data[key].sectiontitle + "</a></li>");
+            });
+            $('#menu').append("<li><a onclick=javascript:window.location.href='advertise.html' data-ajax='false' class='ui-btn'><i class='fa fa-th-large fa-fw' style='width: 20px; text-align: right'></i>Advertise</a></li><li><a onclick=javascript:window.location.href='contact.html' data-ajax='false' class='ui-btn'><i class='fa fa-phone fa-fw' style='width: 20px; text-align: right'></i>Contact Us</a></li>");
+
+        });
+
+
+        function querystring(key) {
+            var re = new RegExp('(?:\\?|&)' + key + '=(.*?)(?=&|$)', 'gi');
+            var r = [], m;
+            while ((m = re.exec(document.location.search)) != null) r.push(m[1]);
+            return r;
+        }
+
+
+
+        jQuery(document).ready(function () {
+            var offset = 220;
+            var duration = 500;
+            jQuery(window).scroll(function () {
+                if (jQuery(this).scrollTop() > offset) {
+                    jQuery('.back-to-top').fadeIn(duration);
+                } else {
+                    jQuery('.back-to-top').fadeOut(duration);
+                }
+            });
+
+            jQuery('.back-to-top').click(function (event) {
+                event.preventDefault();
+                jQuery('html, body').animate({ scrollTop: 0 }, duration);
+                return false;
+            })
+        });
+
+    </script>
+
+
+
+
+</body>
+</html>

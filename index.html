@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>TTN Online</title>
+    <meta name="author" content="Binju Paul binju@northstar.bh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <!-- jQueryMobileCSS - styling-->
+
+    <!-- jQueryMobile icons -->
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+
+    <!-- jQueryMobile core CSS -->
+    <link rel="stylesheet" href="css/jquery.mobile.min.css" />
+
+    <!-- Owl stylesheet -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+
+    <!-- Owl Theme -->
+    <link rel="stylesheet" href="css/owl.theme.css">
+
+    <!-- NIGHTLY style -->
+    <link rel="stylesheet" href="css/nightly.css" />
+
+    <!-- Load Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic|Oswald:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- jQueryMobile -->
+    <script src="js/jquery.mobile.min.js"></script>
+
+    <!-- Owl Carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+
+
+    <style>
+         a {text-decoration:none;}
+    </style>
+
+
+</head>
+<body>
+
+
+ 
+
+
+  <div data-role="page"  >
+
+         <div data-role="panel" data-display="push" id="sidebar" data-theme="a"  >
+
+        <img src="images/ttnlogo.png" />
+        <br />
+        <br />
+
+        <ul id="menu" data-role="listview" data-inset="false" data-icon="false" data-divider-theme="" class="ui-listview" style="text-align: left;  ">
+            <li><a href="index.html" data-ajax="false" class="ui-btn"><i class="fa fa-home fa-fw" style="width: 20px; text-align: right"></i>Home</a></li>
+        </ul>
+    </div>
+
+ 
+
+        <div data-role="header"  style="background-color:#127ec2">
+            <a href='#sidebar' data-role="none">
+                <img src="images/menu-icon.png" alt="sidebar" id="header-menu-icon" /></a>
+            <h1 class="header-title">
+                <img src="images/ttnlogo.png"  onclick="window.location.href='index.html'" />
+            </h1>
+
+        </div>
+
+
+        <div data-role="content" style="background-color:white">
+            <div id="loading" style="width: 16px; height: 16px; vertical-align: top; margin: 50px;" class="clear;">
+                <img src="images/loading.gif" /></div>
+            <div id="disparea">
+
+                <div data-role="none" id="main-slider" class="owl-carousel">
+
+                    <div class="item">
+                        <div class="sliderimg">
+                            <img id="slideimg1" alt="" style="cursor: pointer">
+                        </div>
+                        <div class="htext">
+                            <div id="slidetitle1" style="cursor: pointer"></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="sliderimg">
+                            <img id="slideimg2" alt="" style="cursor: pointer">
+                        </div>
+                        <div class="htext">
+                            <div id="slidetitle2" style="cursor: pointer"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="sliderimg">
+                            <img id="slideimg3" alt="" style="cursor: pointer">
+                        </div>
+                        <div class="htext">
+                            <div id="slidetitle3" style="cursor: pointer"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="sliderimg">
+                            <img id="slideimg4" alt="" style="cursor: pointer">
+                        </div>
+                        <div class="htext">
+                            <div id="slidetitle4" style="cursor: pointer"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="homelist" data-role="listview" class="tanewslist">
+                </div>
+                <iframe class="left" scrolling="no" src="http://cdn.ttnonline.com/app/ads.html" frameborder="0" height="65px" width="100%"></iframe>
+
+                <div id="gc">
+                </div>
+
+
+                <iframe class="left" scrolling="no" src="http://cdn.ttnonline.com/app/ads.html" frameborder="0" height="65px" width="100%"></iframe>
+                <br class="clear" />
+                <div data-role="listview" style="background-color: #444; color: #999; font-size: 10px; padding: 5px 20px;">&copy; Al Hilal Group. &nbsp; &nbsp; &nbsp;Powered by Northstar Technologies.</div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+           
+
+            var rowcontent = '';
+            var slidercontent = '';
+            var i = 0;
+
+            $.getJSON('http://cdn.ttnonline.com/TATopNews/?jsoncallback=?', function (data) {
+
+                rowcontent = "<table>";
+
+                $.each(data, function (key, value) {
+                    i++;
+
+
+
+                    if (i == 1) {
+                        $('#slideimg1').attr('src', data[key].ImageFileNameSRC);
+                        $('#slidetitle1').text(data[key].Title);
+                        $('#slideimg1,#slidetitle1').attr('onclick', 'javascript:window.location.href="tadetails.html?id=' + data[key].ArticleID + '"');
+
+                    }
+                    else if (i == 2) {
+                        $('#slideimg2').attr('src', data[key].ImageFileNameSRC);
+                        $('#slidetitle2').text(data[key].Title);
+                        $('#slideimg2,#slidetitle2').attr('onclick', 'javascript:window.location.href="tadetails.html?id=' + data[key].ArticleID + '"');
+                    }
+                    else if (i == 3) {
+                        $('#slideimg3').attr('src', data[key].ImageFileNameSRC);
+                        $('#slidetitle3').text(data[key].Title);
+                        $('#slideimg3,#slidetitle3').attr('onclick', 'javascript:window.location.href="tadetails.html?id=' + data[key].ArticleID + '"');
+                    }
+                    else if (i == 4) {
+                        $('#slideimg4').attr('src', data[key].ImageFileNameSRC);
+                        $('#slidetitle4').text(data[key].Title);
+                        $('#slideimg4,#slidetitle4').attr('onclick', 'javascript:window.location.href="tadetails.html?id=' + data[key].ArticleID + '"');
+                    }
+                    else if (i > 4 && i < 15) {
+                        rowcontent += "<tr><td style='padding:5px 0px;vertical-align:top'><i class='fa fa-angle-right fa-fw'></i></td>";
+                        rowcontent += "<td style='padding:5px 0px;vertical-align:top'><span style='cursor:pointer'  onclick=javascript:window.location.href='tadetails.html?id=" + data[key].ArticleID + "'>" + data[key].Title + "</span></td></tr>";
+
+
+                    }
+
+                });
+                rowcontent += "</table>";
+                $('.tanewslist').append(rowcontent);
+
+                $('#loading').hide();
+                
+
+            });
+
+            //GC
+           
+            $.getJSON('http://cdn.ttnonline.com/ttnHome/?jsoncallback=?', function (data) {
+                var gcontent = "";
+                var secissueid = 0;
+                var cursecissueid = 0;
+
+                $.each(data, function (key, value) {
+                    cursecissueid = data[key].sectionissueid;
+                    if (secissueid != cursecissueid) {
+                        gcontent += "<br class='clear'><div style='color:white; background-color:#127ec2;padding:5px 10px;text-transform:uppercase;font-size:14px;font-weight:bold'  onclick=javascript:window.location.href='section.html?id=" + data[key].sectionissueid + "'>" + data[key].sectiontitle + "<div class='right' style='font-size:12px;' ><a  class='secmore' >More</a><i class='fa fa-angle-right fa-fw'></i></div></div>";
+                        secissueid = cursecissueid;
+                    }
+
+                    gcontent += "<div style='padding: 4px 5px;'><div data-role='listview' class='newsitem'>";
+                    if (data[key].imagefilename != '') {
+                        gcontent += "<table><tr><td style='width:80%'><a  style='color:black;text-decoration:none; line-height:12px;' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "'>" + data[key].title + "</a></td><td rowspan=2><img  style='width: 100px; height: 63px;' class='ui-li-has-thumb' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "' src='http://www.ttnonline.com/" + data[key].imagefilename + "' /></td></tr><tr><td><a class='clear readmore' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "' title='Read More'><div style='width:25px'><img src='images/readmore.png'></div></a></td></tr></table>";
+                    }
+                    else {
+                        gcontent += "<table><tr><td><a style='color:black;text-decoration:none; line-height:12px;' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "'>" + data[key].title + "</a></td></tr><tr><td><a class='clear' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "' title='Read More'><div style='width:25px'><img src='images/readmore.png'></div></a></td></tr></table>";
+                    }
+                    gcontent += "</div></div>";
+
+                });
+                $("#gc").append(gcontent);
+            });
+
+
+            $.getJSON('http://cdn.ttnonline.com/ttnSections/?jsoncallback=?', function (data) {
+
+                $.each(data, function (key, value) {
+                    $('#menu').append("<li><a onclick=javascript:window.location.href='section.html?id=" + data[key].sectionissueid + "' data-ajax='false' class='ui-btn'><i class='fa fa-align-center' style='width: 20px; text-align: right'></i>" + data[key].sectiontitle + "</a></li>");
+                });
+                $('#menu').append("<li><a onclick=javascript:window.location.href='advertise.html' data-ajax='false' class='ui-btn'><i class='fa fa-th-large fa-fw' style='width: 20px; text-align: right'></i>Advertise</a></li><li><a onclick=javascript:window.location.href='contact.html' data-ajax='false' class='ui-btn'><i class='fa fa-phone fa-fw' style='width: 20px; text-align: right'></i>Contact Us</a></li>");
+
+            });
+
+
+        });
+
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function ($) {
+
+          
+
+            var time = 8; // time in seconds
+
+            var $progressBar,
+                $bar,
+                $elem,
+                isPause,
+                tick,
+                percentTime;
+
+
+            $("#main-slider").owlCarousel({
+
+                slideSpeed: 700,
+                paginationSpeed: 700,
+                rewindSpeed: 1500,
+                singleItem: true,
+                pagination: false,
+                lazyLoad: true,
+                autoPlay: 10000,
+                stopOnHover: true,
+                navigation: false,
+                navigationText: [
+                  "<i class='owl-nav-left fa fa-angle-left'></i>",
+                  "<i class='owl-nav-right fa fa-angle-right'></i>"
+                ],
+                afterInit: progressBar,
+                afterMove: moved,
+                startDragging: pauseOnDragging
+            });
+
+
+            function progressBar(elem) {
+                $elem = elem;
+                buildProgressBar();
+                start();
+            }
+
+
+            function buildProgressBar() {
+                $progressBar = $("<div>", {
+                    id: "progressBar"
+                });
+                $bar = $("<div>", {
+                    id: "bar"
+                });
+                $progressBar.append($bar).prependTo($elem);
+            }
+
+            function start() {
+
+                percentTime = 0;
+                isPause = false;
+
+                tick = setInterval(interval, 10);
+            };
+
+            function interval() {
+                if (isPause === false) {
+                    percentTime += 1 / time;
+                    $bar.css({
+                        width: percentTime + "%"
+                    });
+
+                    if (percentTime >= 100) {
+
+                        $elem.trigger('owl.next')
+                    }
+                }
+            }
+
+            function pauseOnDragging() {
+                isPause = true;
+            }
+
+            function moved() {
+
+                clearTimeout(tick);
+                start();
+            }
+
+
+            $elem.on('mouseover', function () {
+                isPause = true;
+            })
+            $elem.on('mouseout', function () {
+                isPause = false;
+            })
+
+
+
+
+
+
+
+
+        });
+
+    </script>
+
+</body>
+</html>

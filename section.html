@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>TTN Online</title>
+    <meta name="author" content="Binju Paul binju@northstar.bh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- jQueryMobileCSS - styling-->
+    <link rel="stylesheet" href="css/jqeury.mobile.theme.min.css" />
+
+    <!-- jQueryMobile icons -->
+    <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+
+    <!-- jQueryMobile core CSS -->
+    <link rel="stylesheet" href="css/jquery.mobile.min.css" />
+
+    <!-- Owl stylesheet -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+
+    <!-- Owl Theme -->
+    <link rel="stylesheet" href="css/owl.theme.css">
+
+    <!-- NIGHTLY style -->
+    <link rel="stylesheet" href="css/nightly.css" />
+
+    <!-- Load Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic|Oswald:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- jQueryMobile -->
+    <script src="js/jquery.mobile.min.js"></script>
+
+    <!-- Owl Carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+
+</head>
+<body>
+
+    <div data-role="page" data-theme='a'>
+
+        <div data-role="panel" data-display="push" id="sidebar" data-theme="a">
+
+            <img src="images/ttnlogo.png"  />
+            <br />
+            <br />
+
+            <ul id="menu" data-role="listview" data-inset="false" data-icon="false" data-divider-theme="" class="ui-listview" style="text-align: left">
+                <li><a href="index.html" data-ajax="false" class="ui-btn"><i class="fa fa-home fa-fw" style="width: 20px; text-align: right"></i>Home</a></li>
+            </ul>
+        </div>
+
+ 
+
+        <div data-role="header" data-tap-toggle="false" data-theme='a'>
+            <a href='#sidebar' data-role="none">
+                <img src="images/menu-icon.png" alt="sidebar" id="header-menu-icon" /></a>
+            <h1 class="header-title">
+                <img src="images/ttnlogo.png"  onclick="window.location.href='index.html'" />
+            </h1>
+
+        </div>
+
+        <div data-role="content" style="margin: 0px 0 0 0;">
+            <ul data-role="listview">
+                <li id="sectiontitle" style="background-color: #555; color: white"></li>
+            </ul>
+
+            <div id="leadarticle"></div>
+
+            <div id="morestories" data-role='listview' style="min-height: 500px;">
+
+                <div id="loading" style="width: 16px; height: 16px;" class="clear">
+                    <img src="images/loading.gif" /></div>
+            </div>
+            <br class="clear" />
+         <iframe class="left" scrolling="no"   src="http://cdn.ttnonline.com/app/ads.html" frameborder="0" height="65px" width="100%"></iframe>
+
+
+
+
+
+        </div>
+
+        <div data-role="listview" style="background-color: #444; color: #999; font-size: 10px; padding: 5px 20px;">&copy; Al Hilal Group. &nbsp; &nbsp; &nbsp;Powered by Northstar Technologies.</div>
+
+
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            var leadarticle = 0;
+
+            $.getJSON('http://cdn.ttnonline.com/ttnSectionArticles/' + querystring('id') + '/?jsoncallback=?', function (data) {
+
+
+                var morest = "";
+                var sectiontitle = "";
+
+                $.each(data, function (key, value) {
+
+                    $('#sectiontitle').html(data[key].sectiontitle);
+
+                    if (leadarticle == 0) {
+                        if (data[key].imagefilename != '') {
+
+                            $("#leadarticle").append("<div style='height:200px;overflow:hidden'><img onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "'  style='width: 100%;cursor:pointer'   src='http://www.ttnonline.com/" + data[key].imagefilename + "' /></div><div style='padding:15px 0; background-color:#555; text-align:center;'><a style='color:white;font-size:18px;font-weight:bold;text-decoration:none;' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "'>" + data[key].title + "</a></div><br><br>")
+                            leadarticle = data[key].articleid;
+                        }
+                    }
+                    else if(leadarticle != 0) {
+                        morest = "<div style='padding:4px 5px; '><div data-role='listview' class='newsitem'>";
+                        if (data[key].imagefilename != '') {
+                            morest += "<table><tr><td style='width:80%'><a style='color:black;text-decoration:none; line-height:12px;' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "'>" + data[key].title + "</a></td><td rowspan=2><a onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "'><img  style='width: 100px; height: 63px;' class='ui-li-has-thumb' src='http://www.ttnonline.com/" + data[key].imagefilename + "' /></a></td></tr><tr><td><a class='clear readmore' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "' title='Read More'><div style='width:25px'><img src='images/readmore.png'></div></a></td></tr></table>";
+                        }
+                        else {
+                            morest += "<table><tr><td><a style='color:black;text-decoration:none; line-height:12px;' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "'>" + data[key].title + "</a></td></tr><tr><td><a class='clear readmore' onclick=javascript:window.location.href='details.html?id=" + data[key].articleid + "' title='Read More'><div style='width:25px'><img src='images/readmore.png'></div></a></td></tr></table>";
+                        }
+                    }
+                    morest += "</div></div>";
+                    $('#morestories').hide().append(morest).fadeIn(300);
+                    morest = "";
+
+
+                });
+
+
+
+                $('#loading').hide();
+            });
+
+
+            $.getJSON('http://cdn.ttnonline.com/ttnSections/?jsoncallback=?', function (data) {
+
+                $.each(data, function (key, value) {
+                    $('#menu').append("<li><a onclick=javascript:window.location.href='section.html?id=" + data[key].sectionissueid + "' data-ajax='false' class='ui-btn'><i class='fa fa-align-center' style='width: 20px; text-align: right'></i>" + data[key].sectiontitle + "</a></li>");
+                });
+                $('#menu').append("<li><a onclick=javascript:window.location.href='advertise.html' data-ajax='false' class='ui-btn'><i class='fa fa-th-large fa-fw' style='width: 20px; text-align: right'></i>Advertise</a></li><li><a onclick=javascript:window.location.href='contact.html' data-ajax='false' class='ui-btn'><i class='fa fa-phone fa-fw' style='width: 20px; text-align: right'></i>Contact Us</a></li>");
+
+            });
+
+
+
+
+
+            function querystring(key) {
+                var re = new RegExp('(?:\\?|&)' + key + '=(.*?)(?=&|$)', 'gi');
+                var r = [], m;
+                while ((m = re.exec(document.location.search)) != null) r.push(m[1]);
+                return r;
+            }
+        });
+
+    </script>
+
+
+
+
+
+    
+
+</body>
+</html>
